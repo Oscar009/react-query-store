@@ -30,3 +30,12 @@ export const getProduct = async ({ id }: GetProductOptions): Promise<Product> =>
 
   return data;
 }
+
+type ProductLike = Omit<Product, 'id'>;
+
+export const createProduct = async (product: ProductLike) => {
+  await sleep(5000);
+
+  const { data } = await productsClient.post<Product>(`/products`, product);
+  return data;
+}
